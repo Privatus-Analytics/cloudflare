@@ -1,0 +1,27 @@
+# Route passthrough + Queue consumer. Deploy: npx --no-install wrangler deploy
+name = "privatus-crawler-log-shipper"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+workers_dev = false
+
+# Run on the site whose crawler traffic you want to see. Replace example.com.
+routes = [
+  { pattern = "example.com/*", zone_name = "example.com" },
+]
+
+[vars]
+UPSTREAM = "https://privatusanalytics.com"
+ONLY_BOTS = "true"   # "false" ships every request (still no IPs, no query strings)
+EXTRA_BOTS = ""      # optional comma-separated extra UA tokens
+
+# Secret (never in this file): npx --no-install wrangler secret put INGEST_KEY   → the site's crawler log key (pik_…)
+
+[[queues.producers]]
+queue = "privatus-crawler-logs"
+binding = "LOG_QUEUE"
+
+[[queues.consumers]]
+queue = "privatus-crawler-logs"
+max_batch_size = 100
+max_batch_timeout = 30
+max_retries = 5

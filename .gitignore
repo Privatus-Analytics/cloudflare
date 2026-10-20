@@ -1,0 +1,10 @@
+node_modules/
+.wrangler/
+.dev.vars
+dist/
+.DS_Store
+.secrets/
+SUBMISSION.md
+.env
+.env.local
+coverage/

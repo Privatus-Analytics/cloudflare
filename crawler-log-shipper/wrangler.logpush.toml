@@ -1,0 +1,14 @@
+# Logpush HTTP destination endpoint. Deploy: npx --no-install wrangler deploy -c wrangler.logpush.toml
+name = "privatus-logpush-receiver"
+main = "src/logpush.js"
+compatibility_date = "2024-09-23"
+workers_dev = true   # or add a custom domain route
+
+[vars]
+UPSTREAM = "https://privatusanalytics.com"
+ONLY_BOTS = "true"
+EXTRA_BOTS = ""
+
+# Secrets:
+#   npx --no-install wrangler secret put INGEST_KEY      -c wrangler.logpush.toml   → the site's crawler log key (pik_…)
+#   npx --no-install wrangler secret put LOGPUSH_SECRET  -c wrangler.logpush.toml   → long random string
