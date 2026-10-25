@@ -1,5 +1,5 @@
 {
-  "name": "@privatus/cloudflare-crawler-log-shipper",
+  "name": "@privatus-analytics/cloudflare-crawler-log-shipper",
   "version": "1.0.0",
   "private": true,
   "description": "Ship AI/search crawler request logs (no IPs) from Cloudflare to Privatus Analytics",
