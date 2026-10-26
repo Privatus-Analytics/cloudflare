@@ -1,5 +1,24 @@
 # Privatus Analytics on Cloudflare
 
+**See which AI tools and search engines read your site, with no IP addresses kept.**
+
+AI assistants and search engines visit your pages all the time. But their
+crawlers (the programs that read web pages for them) don't run JavaScript, so
+normal analytics never sees them.
+
+This Cloudflare Worker (a small program that runs on Cloudflare's network, in
+front of your site) passes every request through as normal. For each crawler
+visit it sends one short line to Privatus Analytics: the time, the page, the
+status and the crawler's name. It sends no IP address, no query string and no
+cookies.
+
+So you see which AI tools and search crawlers read your site, which pages they
+read and how often, in your Privatus Analytics dashboard.
+
+**Free plan, no card:** 10,000 events a month (an event is a page view or an action you track) on up to 3 sites. [Start free at privatusanalytics.com](https://privatusanalytics.com).
+
+## About this repo
+
 | Package | Purpose |
 | --- | --- |
 | [`crawler-log-shipper/`](crawler-log-shipper/) | See which AI assistants and search crawlers fetch your pages (they don't run JavaScript), by shipping request logs **without IPs** to Privatus Analytics. Route Worker + Queue, or a Logpush HTTP endpoint. |
